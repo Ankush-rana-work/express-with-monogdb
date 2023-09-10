@@ -4,9 +4,11 @@ const JoiHelper = require('../../util/joiHelper');
 const postSchema = {
     add: (req, res, next) => {
         const schema = Joi.object({
-            name: Joi.string().required(),
+            title: Joi.string().required(),
             slug: Joi.string().required(),
-            parentId: Joi.string()
+            category: Joi.string().required(),
+            content: Joi.string().required(),
+            author: Joi.string().required(),
         });
 
         JoiHelper.validate(schema, req.body, res, next);

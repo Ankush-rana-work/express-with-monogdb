@@ -27,12 +27,17 @@ const postService = {
         }
     },
     addPost: async (req) => {
-        const { name, slug, parentId } = req.body;
+        const { title, slug, category, content, author } = req.body;
 
         try {
 
             // Check if parentId is provided and is a valid ObjectId
-            if (parentId && !mongoose.Types.ObjectId.isValid(parentId)) {
+            if (parentId && !mongoose.Types.ObjectId.isValid(category)) {
+                throw new CustomError('Parent category ID is not valid', 400);
+            }
+
+            // Check if parentId is provided and is a valid ObjectId
+            if (parentId && !mongoose.Types.ObjectId.isValid(category)) {
                 throw new CustomError('Parent category ID is not valid', 400);
             }
 
